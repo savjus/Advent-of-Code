@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 
 // taken from https://github.com/rtrinh3/AdventOfCode/blob/master/README.md
-// run day with .\Aoc2023.exe 01 "day01-input.txt"
+// run day with .\Aoc2023.exe 01 "day01-input.txt" within  bin/debug/net9.0 
 // add inputs and execute the code in the filepath:
 //C:\Users\salvp\source\repos\Advent Of Code\AoC_2023\Aoc2023\Aoc2023\bin\Debug\net8.0
 

@@ -1,11 +1,11 @@
 import re
 import itertools
 
-# Get the added space value
+print("Part1: Distance=1");
+print("Part2: Distance=999999");
 AddSpace = int(input("Distance per empty row/col: "))
 
-# Read and clean the galaxy map
-with open("Aoc2023_11_input.txt", "r") as file:
+with open(r"C:\Users\salvp\source\repos\Random projects\projects\Advent of Code\Advent of Code\Aoc2023\bin\Debug\net9.0\day11-input.txt", "r") as file:
     galaxy = [line.strip() for line in file.readlines()]
 
 verticals, horizontals, stars = [], [], []
@@ -24,7 +24,7 @@ for j, line in enumerate(galaxy):
 
 total = 0
 
-# Calculate pairwise distances
+# distances
 for a, b in itertools.combinations(stars, 2):
     x = sorted((a[0], b[0]))
     y = sorted((a[1], b[1]))
