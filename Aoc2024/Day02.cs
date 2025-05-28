@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Aoc2024
+﻿namespace Aoc2024
 {
     class Day02 : IAocDay
     {
