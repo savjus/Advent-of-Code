@@ -13,7 +13,7 @@ taken from https://github.com/rtrinh3/AdventOfCode/blob/master/README.md
 
 #TODO 
 	- [] make 2024 day6 faster (from 6s)
-	- [] finish redo-ing 2024
+	- [] finish redoing/porting 2024
 	- [] finish 2023
 	- [] 
 	- [] 

@@ -1,6 +1,4 @@
-﻿using AocCommon;
-using System.Data;
-namespace Aoc2023;
+﻿namespace Aoc2023;
 
 public class Day11 : IAocDay
 {
