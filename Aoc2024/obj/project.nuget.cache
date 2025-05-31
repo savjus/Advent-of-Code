@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0m6q1jGPLZg=",
+  "dgSpecHash": "neU8diD6ICA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\salvp\\Desktop\\Advent-of-Code\\Aoc2024\\Aoc2024.csproj",
+  "projectFilePath": "C:\\Users\\salvp\\source\\repos\\Random projects\\projects\\Advent of Code\\Advent-of-Code\\Aoc2024\\Aoc2024.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\salvp\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.2\\microsoft.netcore.app.ref.9.0.2.nupkg.sha512",
     "C:\\Users\\salvp\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.2\\microsoft.windowsdesktop.app.ref.9.0.2.nupkg.sha512",

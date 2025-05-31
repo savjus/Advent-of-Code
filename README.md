@@ -10,3 +10,10 @@ taken from https://github.com/rtrinh3/AdventOfCode/blob/master/README.md
 	run day with .\Aoc2023.exe 01 "day01-input.txt"
 	add inputs and execute the code in the filepath:
 	\Aoc2023\Aoc2023\bin\Debug\net8.0
+
+#TODO 
+	- [] make 2024 day6 faster (from 6s)
+	- [] finish redo-ing 2024
+	- [] finish 2023
+	- [] 
+	- [] 

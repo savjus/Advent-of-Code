@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\salvp\\Desktop\\Advent-of-Code\\Aoc2023\\Aoc2023.csproj": {}
+    "C:\\Users\\salvp\\source\\repos\\Random projects\\projects\\Advent of Code\\Advent-of-Code\\Aoc2023\\Aoc2023.csproj": {}
   },
   "projects": {
-    "C:\\Users\\salvp\\Desktop\\Advent-of-Code\\Aoc2023\\Aoc2023.csproj": {
+    "C:\\Users\\salvp\\source\\repos\\Random projects\\projects\\Advent of Code\\Advent-of-Code\\Aoc2023\\Aoc2023.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\salvp\\Desktop\\Advent-of-Code\\Aoc2023\\Aoc2023.csproj",
+        "projectUniqueName": "C:\\Users\\salvp\\source\\repos\\Random projects\\projects\\Advent of Code\\Advent-of-Code\\Aoc2023\\Aoc2023.csproj",
         "projectName": "Aoc2023",
-        "projectPath": "C:\\Users\\salvp\\Desktop\\Advent-of-Code\\Aoc2023\\Aoc2023.csproj",
+        "projectPath": "C:\\Users\\salvp\\source\\repos\\Random projects\\projects\\Advent of Code\\Advent-of-Code\\Aoc2023\\Aoc2023.csproj",
         "packagesPath": "C:\\Users\\salvp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\salvp\\Desktop\\Advent-of-Code\\Aoc2023\\obj\\",
+        "outputPath": "C:\\Users\\salvp\\source\\repos\\Random projects\\projects\\Advent of Code\\Advent-of-Code\\Aoc2023\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

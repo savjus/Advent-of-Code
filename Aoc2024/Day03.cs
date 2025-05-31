@@ -1,5 +1,4 @@
 ﻿using System.Text.RegularExpressions;
-
 namespace Aoc2024
 {
     class Day03 : IAocDay
