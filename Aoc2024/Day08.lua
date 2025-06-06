@@ -53,6 +53,7 @@ function CheckForAntinodes(antennae,antinodes,key,rows,cols)
   end
 end
 
+-- checks for antinodes untill they are out of bounds
 local function CheckForAntinodesContinious(antennae,antinodes,key,rows,cols)
    local pos = antennae[key]
   for i=1, #pos do
@@ -65,8 +66,10 @@ local function CheckForAntinodesContinious(antennae,antinodes,key,rows,cols)
       local dr = pos[i][1] - pos[j][1] --row difference of the 2 antennas
       local dc = pos[i][2] - pos[j][2] --col difference of the 2 antennas
 
-      local row = pos[i][1] + dr
-      local col = pos[i][2] + dc
+      --the antennae position in the first direction
+      local row = pos[i][1] + dr  
+      local col = pos[i][2] + dc  
+      
       while InBounds(row,col,rows,cols) do
         local anKey = tostring(row)..","..tostring(col)
         antinodes[anKey] = true
@@ -74,6 +77,7 @@ local function CheckForAntinodesContinious(antennae,antinodes,key,rows,cols)
         col = col + dc
       end
       
+      --the antennae position in the second direction
       local row = pos[j][1] - dr
       local col = pos[j][2] - dc
       while InBounds(row,col,rows,cols) do
@@ -100,10 +104,12 @@ end
 local function p1()
   local antennae, rows, cols = ReadInput("bin\\Debug\\net9.0\\day08-input.txt")
   local antinodes = {}
-  for key,_ in pairs(antennae) do
-    CheckForAntinodes(antennae,antinodes,key,rows,cols)
+  if antennae then
+    for key,_ in pairs(antennae) do
+      CheckForAntinodes(antennae,antinodes,key,rows,cols)
+    end
   end
-  print("Part 1:"..countKeys(antinodes))
+  print("Part 1:" ..countKeys(antinodes))
 end
 
 
@@ -111,8 +117,10 @@ end
 local function p2()
   local antennae, rows, cols = ReadInput("bin\\Debug\\net9.0\\day08-input.txt")
   local antinodes = {}
-  for key,_ in pairs(antennae) do
-    CheckForAntinodesContinious(antennae,antinodes,key,rows,cols)
+  if antennae then
+    for key,_ in pairs(antennae) do
+      CheckForAntinodesContinious(antennae,antinodes,key,rows,cols)
+    end
   end
   print("Part 1:"..countKeys(antinodes))
 end

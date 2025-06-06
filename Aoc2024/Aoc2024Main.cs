@@ -1,34 +1,20 @@
 ﻿using System.Diagnostics;
+using Aoc2024;
+
+// taken from https://github.com/rtrinh3/AdventOfCode/blob/master/README.md
+// run day with .\Aoc2023.exe 01 "day01-input.txt" within  bin/debug/net9.0 
+// add inputs and execute the code in the filepath:
+//C:\Users\salvp\source\repos\Advent Of Code\AoC_2023\Aoc2023\Aoc2023\bin\Debug\net8.0
 
 namespace Aoc2024
 {
-    public class Aoc2024Main
+    internal class Aoc2024Main
     {
         static void Main(string[] args)
         {
             string? day = args.ElementAtOrDefault(0);
             string? input = args.ElementAtOrDefault(1);
-#if DEBUG
-            const bool debug = true;
-#else
-                const bool debug = false;
-#endif
-            if (debug)
-            {
-                day ??= "01";
-                input ??= @"PLACEHOLDER";
-            }
-            else
-            {
-                if (day == null)
-                {
-                    throw new Exception($"Missing day");
-                }
-                if (input == null)
-                {
-                    throw new Exception($"Missing input");
-                }
-            }
+
             if (File.Exists(input))
             {
                 input = File.ReadAllText(input);
@@ -37,24 +23,26 @@ namespace Aoc2024
             {
                 throw new Exception($"Bad day: {day}");
             }
-
+            
             string dayClassName = "Aoc2024.Day" + dayValue.ToString("00");
             Console.WriteLine($"Loading: {dayClassName}");
-            var initTimer = Stopwatch.StartNew();
+            Stopwatch initTimer = Stopwatch.StartNew();
             var dayClass = typeof(Aoc2024Main).Assembly.GetType(dayClassName);
-            var dayConstructor = dayClass.GetConstructor( new[] { typeof(string) });
+            if (dayClass == null)
+                throw new Exception("dayclass null");
+            var dayConstructor = dayClass.GetConstructor(new[] {typeof(string) });
             IAocDay dayInstance = (IAocDay)dayConstructor.Invoke(new object[] { input });
             Console.WriteLine($"Time: {initTimer.Elapsed}");
 
             Console.WriteLine("\nPart 1");
-            var partOneTimer = Stopwatch.StartNew();
-            var partOneAnswer = dayInstance.Part1();
+            Stopwatch partOneTimer = Stopwatch.StartNew();
+            Int64 partOneAnswer = dayInstance.Part1();
             Console.WriteLine($"Time: {partOneTimer.Elapsed}");
             Console.WriteLine(partOneAnswer);
 
             Console.WriteLine("\nPart 2");
-            var partTwoTimer = Stopwatch.StartNew();
-            var partTwoAnswer = dayInstance.Part2();
+            Stopwatch partTwoTimer = Stopwatch.StartNew();
+            Int64 partTwoAnswer = dayInstance.Part2();
             Console.WriteLine($"Time: {partTwoTimer.Elapsed}");
             Console.WriteLine(partTwoAnswer);
         }

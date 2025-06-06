@@ -30,6 +30,7 @@ class Day12 : IAocDay
   {
     lines = input.Split('\n');
   }
+
   
   long CountArrangements(string springs, List<int> groups)
   {
@@ -43,7 +44,6 @@ class Day12 : IAocDay
     if (springs[0] == '.' || springs[0] == '?')
       count += CountArrangements(springs.Substring(1), groups);
 
-
     int n = groups[0];
     if (springs.Take(n).All(c => c == '#' || c == '?') &&
         (springs.Length == n || springs[n] == '.' || springs[n] == '?'))
@@ -54,6 +54,8 @@ class Day12 : IAocDay
       }
     return count;
   }
+
+
   public long Part1()
   {
     long result = 0;
