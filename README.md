@@ -12,8 +12,8 @@ taken from https://github.com/rtrinh3/AdventOfCode/blob/master/README.md
 	\Aoc2023\Aoc2023\bin\Debug\net8.0
 
 #TODO 
-	- [] make 2024 day6 faster (from 6s)
-	- [] finish redoing/porting 2024
-	- [] finish 2023
-	- [] 
-	- [] 
+-  make 2024 day6 faster (from 6s)
+-  finish redoing 2024
+-  finish 2023
+-  
+-  
