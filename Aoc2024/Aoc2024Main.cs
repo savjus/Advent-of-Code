@@ -6,6 +6,9 @@ using Aoc2024;
 // add inputs and execute the code in the filepath:
 //C:\Users\salvp\source\repos\Advent Of Code\AoC_2023\Aoc2023\Aoc2023\bin\Debug\net8.0
 
+//list of days that I don't understand fully
+//Day 09  math
+//
 namespace Aoc2024
 {
     internal class Aoc2024Main

@@ -4,10 +4,10 @@ namespace Aoc2024
 {
     class Day09 : IAocDay
     {
-        int[] nums;
+        string Input;
         public Day09(string input)
         {
-            nums = input.Select(x => x - '0').ToArray(); // turn to ints
+            Input = input;
         }
         // 12345 -> 0..111....22222 -> 022111222...... (move nums from right to left into empty space)
         // then count sum, by multiple by rising index. 0*0, 1*2, 2*2, 3*1...
@@ -19,68 +19,59 @@ namespace Aoc2024
         // we can know length = 4, number = 2, index = 0
         //   index -> n                         n,n+1,n+2,n+3
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="length">length of same value number group</param>
-        /// <param name="value">value of number</param>
-        /// <param name="index">position start of the group</param>
-        /// <returns></returns>
-        private long CheckSum(int length, int value, ref int index)
-        {
-            long sum = (length-1 + 2 * index) * length / 2 * value;
-            index += length;
-            return sum;
-        }
-
-
         public long Part1()
         {
-            long result = 0;
-            int i = 0;
-            int k = 0;
-            int j = nums.Length -1;
+            int[] nums = Input.ToCharArray().Select(c => c - '0').ToArray();
+            long result = 0L;
+            int k = 0; // result string front pointer
+            int i = 0; //input number front pointer
+            int j = nums.Length - 1; // input number back pointer
             while (true)
             {
-                if (nums[i] % 2 == 0)
+                if (i % 2 == 0)
                 {
-                    result += CheckSum(nums[i], i / 2, ref k);
+                    result += UpdateFileCheckSum(nums[i], i / 2, ref k);
                     nums[i] = 0;
                     if (i >= j)
                         break;
-                    i++;
+                    i += 1;
                 }
-                else
+                else // empty space
                 {
+                    if (i >= j)
+                    {
+                        result += (nums[j] + 1) * nums[j] / 2;
+                        break;
+                    }
+                    // moves one of the pointers
                     int m = Math.Min(nums[i], nums[j]);
-                    result += CheckSum(m, j / 2, ref k);
+                    result += UpdateFileCheckSum(m, j / 2, ref k);
                     nums[i] -= m;
                     nums[j] -= m;
-                    if (nums[i] == 0)
-                        i++;
-                    if (nums[j] == 0)
-                        j = j - 2;
+                    if (nums[i] == 0) //skips if front input num is 0
+                        i += 1;
+                    if (nums[j] == 0)// skips if last input num is 0;  
+                        j -= 2;
                 }
-                break;
             }
             return result;
         }
         public long Part2()
         {
-            int[] numsCopy = nums;
+            int[] nums = Input.ToCharArray().Select(c => c - '0').ToArray();
+            int[] numsCopy = nums.ToArray();
+            long result = 0L;
             int k = 0;
             int i = 0;
-            long result = 0;
             while (i < nums.Length)
             {
                 if (i % 2 == 0)
                 {
                     if (nums[i] == 0)
                         k += numsCopy[i];
-                    result += CheckSum(nums[i], i / 2, ref k);
+                    result += UpdateFileCheckSum(nums[i], i / 2, ref k);
                     nums[i] = 0;
-                    i++;
+                    i += 1;
                 }
                 else
                 {
@@ -95,23 +86,32 @@ namespace Aoc2024
                             break;
                         }
                     }
-
                     if (found)
                     {
-                        result += CheckSum(nums[j], j / 2, ref k);
+                        result += UpdateFileCheckSum(nums[j], j / 2, ref k);
                         nums[i] -= nums[j];
                         nums[j] = 0;
                         if (nums[i] == 0)
-                            i++;
+                            i += 1;
                     }
                     else
                     {
                         k += nums[i];
-                        i++;
+                        i += 1;
                     }
                 }
             }
             return result;
+        }
+
+        // curr = number 
+        // value = i/2
+        // k is the beginning of the next number pointer, 2k is 
+        private static long UpdateFileCheckSum(int cur, long value, ref int k)
+        {
+            long ret = (cur - 1 + 2 * k) * cur / 2 * value;
+            k += cur;
+            return ret;
         }
     }
 }

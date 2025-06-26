@@ -1,12 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Aoc2024
+﻿namespace Aoc2024
 {
-    internal class Day10
+    class Day10 : IAocDay
     {
+        public Day10() { }
+        public long Part1()
+        {
+            long result = 0;
+         
+            return result;
+        }
+
+        public long Part2()
+        {
+            long result = 0;
+            
+            return result;
+        }
     }
 }
