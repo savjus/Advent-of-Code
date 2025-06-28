@@ -74,27 +74,7 @@ namespace Aoc2024
             }
             return result;
         }
-        public int CountSides(List<Position> island)
-        {
-            int sides = 0;
-            HashSet<Position> set = new HashSet<Position>(island);
-
-            var groupedByRow = island.GroupBy(p => p.X);
-            foreach (var row in groupedByRow)
-            {
-                var yList = row.Select(p => p.Y).OrderBy(y => y).ToList();
-                foreach (int dirY in new int[] { -1, 1 })
-                {
-                    int prevY = int.MinValue;
-                    foreach (var y in yList)
-                    {
-                        int nx = row.Key;
-                        int ny = y;
-                    }
-                }
-            }
-            return sides;
-        }
+       
         public int CountPerimeter(List<Position> island)
         {
             HashSet<Position> set = new HashSet<Position>(island);
