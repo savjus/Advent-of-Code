@@ -14,5 +14,3 @@ add inputs and execute the code in the filepath:
 -  make 2024 day6 faster (from 6s)
 -  finish redoing 2024
 -  finish 2023
--  
--  
