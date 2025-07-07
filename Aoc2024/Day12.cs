@@ -41,7 +41,7 @@ namespace Aoc2024
                                 visited.Add(p);
                         int perimiter = CountPerimeter(islands[cur]);
                         result += islands[cur].Count() * perimiter;
-                        System.Console.WriteLine($"{islands[cur].Count()} {perimiter}");
+                        // System.Console.WriteLine($"{islands[cur].Count()} {perimiter}");
                     }
                 }
             }
@@ -63,36 +63,86 @@ namespace Aoc2024
                     {
                         char cur = input[i][j];
                         islands[cur] = DFS(input, pos, cur, new HashSet<Position>());
-                        foreach (var lp in islands.Values)
-                            foreach (var p in lp)
+                        foreach (List<Position> lp in islands.Values)
+                            foreach (Position p in lp)
                                 visited.Add(p);
-                        int sides = ;
+                        int sides = CountSides(islands[cur]);
                         result += islands[cur].Count() * sides;
-                        System.Console.WriteLine($"{islands[cur].Count()} {sides}");
+                        // System.Console.WriteLine($"{islands[cur].Count()} {sides}");
                     }
                 }
             }
             return result;
         }
+
+        /// <summary>
+        /// checks up down sides, then left right.
+        /// counts by ordering the positions, then  
+        /// </summary>
+        /// <param name="island">list of positions making up the island</param>
+        /// <returns>number of sides on an island</returns>
         public int CountSides(List<Position> island)
         {
+            var set = new HashSet<Position>(island);
             int sides = 0;
-            HashSet<Position> set = new HashSet<Position>(island);
 
+            // check above and bellow sides 
+            //group into rows eg. Row 0: [1,2,3,5,6] Row 1: [2,4,5]
             var groupedByRow = island.GroupBy(p => p.X);
             foreach (var row in groupedByRow)
             {
-                var yList = row.Select(p => p.Y).OrderBy(y => y).ToList();
+                // sort Y coords in ascending order
+                List<int> yList = row.Select(p => p.Y).OrderBy(y => y).ToList();
+                // For checking above and bellow position in the row
                 foreach (int dirY in new int[] { -1, 1 })
                 {
                     int prevY = int.MinValue;
-                    foreach (var y in yList)
+                    foreach (int y in yList)
                     {
-                        int nx = row.Key;
                         int ny = y;
+                        int nx = row.Key + dirY; // here for readability
+                        if (!set.Contains(new Position(nx, ny)))
+                        {
+                            if (prevY != y - 1)
+                                sides++;
+                            prevY = y;
+                        }
+                        else
+                        {
+                            prevY = int.MinValue;
+                        }
                     }
                 }
             }
+
+            // check left and right sides
+            var groupedByCol = island.GroupBy(p => p.Y);
+            foreach (var col in groupedByCol)
+            {
+                List<int> xList = col.Select(p => p.X).OrderBy(x => x).ToList();
+                // Check left and right for each position in the column
+                foreach (int dirX in new int[] { -1, 1 })
+                {
+                    int prevX = int.MinValue;
+                    foreach (int x in xList)
+                    {
+                        int nx = x;
+                        int ny = col.Key;
+                        int checkY = ny + dirX;
+                        if (!set.Contains(new Position(nx, checkY)))
+                        {
+                            if (prevX != x - 1)
+                                sides++;
+                            prevX = x;
+                        }
+                        else
+                        {
+                            prevX = int.MinValue;
+                        }
+                    }
+                }
+            }
+
             return sides;
         }
         public int CountPerimeter(List<Position> island)
