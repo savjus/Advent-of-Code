@@ -96,11 +96,11 @@ namespace Aoc2024
 
             // check left and right sides 
             //group into rows eg. Col 0: [1,2,3,5,6] Col 1: [2,4,5]
-            var groupedByCol = island.GroupBy(p => p.X);
+            var groupedByCol = island.GroupBy(pos => pos.X);
             foreach (var col in groupedByCol)
             {
                 // sort Y coords in ascending order
-                List<int> yList = col.Select(p => p.Y).OrderBy(y => y).ToList();
+                List<int> yList = col.Select(pos => pos.Y).OrderBy(y => y).ToList();
                 // For checking left and right position in the row
                 foreach (int dirX in new int[] { -1, 1 })
                 {
@@ -123,21 +123,22 @@ namespace Aoc2024
                 }
             }
 
-            // check left and right sides
-            var groupedByRow = island.GroupBy(p => p.Y);
-            foreach (var col in groupedByCol)
+            //check above and below sides
+            //group by Y to make rows
+            var groupedByRow = island.GroupBy(pos => pos.Y);
+            foreach (var row in groupedByRow)
             {
-                List<int> xList = col.Select(p => p.X).OrderBy(x => x).ToList();
-                // Check left and right for each position in the column
-                foreach (int dirX in new int[] { -1, 1 })
+                // sort the rows x positions
+                List<int> xList = row.Select(pos => pos.X).OrderBy(x => x).ToList();
+                // above and below
+                foreach (int dirY in new int[] { 1, -1 })
                 {
                     int prevX = int.MinValue;
                     foreach (int x in xList)
                     {
                         int nx = x;
-                        int ny = col.Key;
-                        int checkY = ny + dirX;
-                        if (!set.Contains(new Position(nx, checkY)))
+                        int ny = row.Key + dirY;
+                        if (!set.Contains(new Position(nx, ny)))
                         {
                             if (prevX != x - 1)
                                 sides++;
@@ -147,7 +148,7 @@ namespace Aoc2024
                         {
                             prevX = int.MinValue;
                         }
-                    }
+                    }   
                 }
             }
 
