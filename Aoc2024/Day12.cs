@@ -77,7 +77,15 @@ namespace Aoc2024
 
         /// <summary>
         /// checks up down sides, then left right.
-        /// counts by ordering the positions, then  
+        /// counts by ordering the positions, then
+        /// checking neighbor position.
+        /// if there is no island to the side --> its a side
+        /// check if the side wasnt already discovered (using prevY or prevX here)
+        /// If not, its a new side so +1
+        ///     o X
+        ///     o X
+        ///     o X X X X
+        ///     o o o o o
         /// </summary>
         /// <param name="island">list of positions making up the island</param>
         /// <returns>number of sides on an island</returns>
@@ -86,21 +94,21 @@ namespace Aoc2024
             var set = new HashSet<Position>(island);
             int sides = 0;
 
-            // check above and bellow sides 
-            //group into rows eg. Row 0: [1,2,3,5,6] Row 1: [2,4,5]
-            var groupedByRow = island.GroupBy(p => p.X);
-            foreach (var row in groupedByRow)
+            // check left and right sides 
+            //group into rows eg. Col 0: [1,2,3,5,6] Col 1: [2,4,5]
+            var groupedByCol = island.GroupBy(p => p.X);
+            foreach (var col in groupedByCol)
             {
                 // sort Y coords in ascending order
-                List<int> yList = row.Select(p => p.Y).OrderBy(y => y).ToList();
-                // For checking above and bellow position in the row
-                foreach (int dirY in new int[] { -1, 1 })
+                List<int> yList = col.Select(p => p.Y).OrderBy(y => y).ToList();
+                // For checking left and right position in the row
+                foreach (int dirX in new int[] { -1, 1 })
                 {
                     int prevY = int.MinValue;
                     foreach (int y in yList)
                     {
                         int ny = y;
-                        int nx = row.Key + dirY; // here for readability
+                        int nx = col.Key + dirX; // here for readability
                         if (!set.Contains(new Position(nx, ny)))
                         {
                             if (prevY != y - 1)
@@ -116,7 +124,7 @@ namespace Aoc2024
             }
 
             // check left and right sides
-            var groupedByCol = island.GroupBy(p => p.Y);
+            var groupedByRow = island.GroupBy(p => p.Y);
             foreach (var col in groupedByCol)
             {
                 List<int> xList = col.Select(p => p.X).OrderBy(x => x).ToList();
