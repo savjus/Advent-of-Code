@@ -1,7 +1,4 @@
-﻿using System.Data.Common;
-using System.Diagnostics;
-
-namespace Aoc2024
+﻿namespace Aoc2024
 {
     class Day12 : IAocDay
     {
@@ -197,25 +194,6 @@ namespace Aoc2024
                 }
             }
             return island;
-        }
-    }
-
-    class Postition
-    {
-        public int X { get; set; }
-        public int Y { get; set; }
-        public Postition(int x, int y)
-        {
-            X = X;
-            Y = Y;
-        }
-        public override bool Equals(object? obj)
-        {
-            return obj is Position other && X == other.X && Y == other.Y;
-        }
-        public override int GetHashCode()
-        {
-            return (X, Y).GetHashCode();
         }
     }
 }
