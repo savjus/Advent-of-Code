@@ -1,3 +1,5 @@
+using System.Numerics;
+
 class Position
 {
     public int X;
@@ -8,6 +10,11 @@ class Position
         X = x;
         Y = y;
     }
+    public Position()
+    {
+        X = 0;
+        Y = 0;
+    }
     public Position Move(int x, int y)
     {
         return new Position(X + x, Y + y);
@@ -16,6 +23,16 @@ class Position
     {
         return X < 0 || Y < 0 || X >= bound || Y >= bound;
     }
+    public bool OutOfBounds(int height, int width)
+    {
+        return X < 0 || Y < 0 || X >= width || Y >= height;
+    }
+    
+    public static Position operator +(Position a, Position b)
+    {
+        return new Position(a.X + b.X, a.Y + b.Y);
+    }
+
     public override bool Equals(object? obj)
     {
         if (obj is Position other)

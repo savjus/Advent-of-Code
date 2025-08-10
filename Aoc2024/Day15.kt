@@ -134,7 +134,7 @@ class Day15(private val input: String) {
             i++
         }
         
-        i++ // Skip empty line
+        i++
         while (i < lines.size) {
             moves.addAll(lines[i].toCharArray().toList())
             i++
